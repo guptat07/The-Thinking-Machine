@@ -1,0 +1,9 @@
+You needed the Thinking Machine to become a Senior Developer.
+thinking_machine: [TM]\: You can't do this alone.
+Pick up the Thinking Machine.
+- yes
+	jump senior_dev_cheat/
+- No
+	jump 
+- No x5
+	jump fired/

@@ -18,8 +18,8 @@ public partial class start : Node
 
         // connects the emit signal in dialogic
         dlg.Connect("signal_event", new Callable(this, nameof(OnDialogicSignal)));
-        dlg.Connect("timeline_ended", new Callable(this, nameof(OnDialogicTimelineEnded)));
-        dlg.Call("start", DialoguePath + dialogueStems[count]+".dtl");
+        // dlg.Connect("timeline_ended", new Callable(this, nameof(OnDialogicTimelineEnded)));
+        dlg.Call("start", DialoguePath + "need_tm.dtl");
         count++;
     }
     
@@ -30,14 +30,14 @@ public partial class start : Node
             GD.Print("I can help!");
         }
     }
-    private void OnDialogicTimelineEnded()
-    {
-        if(count == dialogueStems.Length){
-            GD.Print("End of dialogue");
-        } else {
-            currentDialogue = DialoguePath + dialogueStems[count]+".dtl";
-            count++;
-            GetNodeOrNull<Node>(DialogicSingletonPath).Call("start", currentDialogue);
-        }
-    }
+    // private void OnDialogicTimelineEnded()
+    // {
+    //     if(count == dialogueStems.Length){
+    //         GD.Print("End of dialogue");
+    //     } else {
+    //         currentDialogue = DialoguePath + dialogueStems[count]+".dtl";
+    //         count++;
+    //         GetNodeOrNull<Node>(DialogicSingletonPath).Call("start", currentDialogue);
+    //     }
+    // }
 }

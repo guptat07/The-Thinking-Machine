@@ -41,6 +41,7 @@ directories/dtl_directory={
 "job_project": "res://Assets/Dialogue/job_project.dtl",
 "job_project_cheat": "res://Assets/Dialogue/job_project_cheat.dtl",
 "job_project_legit": "res://Assets/Dialogue/job_project_legit.dtl",
+"need_tm": "res://Assets/Dialogue/need_tm.dtl",
 "no_5": "res://Assets/Dialogue/no_5.dtl",
 "peer_work_legit": "res://Assets/Dialogue/peer_work_legit.dtl",
 "senior_dev_cheat": "res://Assets/Dialogue/senior_dev_cheat.dtl",
