@@ -13,6 +13,8 @@ config_version=5
 config/name="The Thinking Machine"
 run/main_scene="uid://dg5vu8hmurtie"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -139,3 +141,4 @@ dialogic_default_action={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
