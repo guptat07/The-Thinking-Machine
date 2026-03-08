@@ -26,7 +26,10 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "assignment": "res://Assets/Dialogue/assignment.dtl",
+"dad": "res://Assets/Dialogue/dad.dtl",
+"drop_tm": "res://Assets/Dialogue/drop_tm.dtl",
 "email": "res://Assets/Dialogue/email.dtl",
+"eulogy": "res://Assets/Dialogue/eulogy.dtl",
 "final_project_cheat": "res://Assets/Dialogue/final_project_cheat.dtl",
 "final_project_legit": "res://Assets/Dialogue/final_project_legit.dtl",
 "fired": "res://Assets/Dialogue/fired.dtl",
@@ -38,9 +41,12 @@ directories/dtl_directory={
 "job_project": "res://Assets/Dialogue/job_project.dtl",
 "job_project_cheat": "res://Assets/Dialogue/job_project_cheat.dtl",
 "job_project_legit": "res://Assets/Dialogue/job_project_legit.dtl",
+"no_5": "res://Assets/Dialogue/no_5.dtl",
 "peer_work_legit": "res://Assets/Dialogue/peer_work_legit.dtl",
+"senior_dev_cheat": "res://Assets/Dialogue/senior_dev_cheat.dtl",
 "start": "res://Assets/Dialogue/start.dtl",
-"test_timeline": "res://Assets/Dialogue/test_timeline.dtl"
+"test_timeline": "res://Assets/Dialogue/test_timeline.dtl",
+"worst_ending": "res://Assets/Dialogue/worst_ending.dtl"
 }
 layout/style_directory={}
 glossary/default_case_sensitive=true
@@ -78,6 +84,7 @@ audio/channel_defaults={
 }
 }
 variables={
+"gibberish": "",
 "tm_uses": 0
 }
 text/autoadvance_fixed_delay=3.0
