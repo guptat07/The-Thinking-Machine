@@ -106,7 +106,7 @@ project/assembly_name="The Thinking Machine"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
