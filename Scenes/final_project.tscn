@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://djnl63pygy54s"]
+
+[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_q7fdh"]
+
+[node name="FinalProject" type="Node2D"]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_q7fdh")]

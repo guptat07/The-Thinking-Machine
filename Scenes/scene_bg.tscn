@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://do88wl6elx8d5"]
+
+[ext_resource type="Script" uid="uid://bvvp66gqqt5xn" path="res://Scripts/SceneBg.cs" id="1_6lnyk"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_6lnyk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
