@@ -8,3 +8,4 @@ It is menial and will take time.
 It feels like he is exercising his new power over you.
 Do you use the Thinking Machine?
 [signal arg="do_it_for"]
+[wait time="60.0"]

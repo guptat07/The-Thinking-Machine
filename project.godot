@@ -36,9 +36,11 @@ directories/dtl_directory={
 "eulogy": "res://Assets/Dialogue/eulogy.dtl",
 "final_project_cheat": "res://Assets/Dialogue/final_project_cheat.dtl",
 "final_project_legit": "res://Assets/Dialogue/final_project_legit.dtl",
+"final_project_no_yes": "res://Assets/Dialogue/final_project_no_yes.dtl",
 "fired": "res://Assets/Dialogue/fired.dtl",
 "friend_helps": "res://Assets/Dialogue/friend_helps.dtl",
 "friends_dinner": "res://Assets/Dialogue/friends_dinner.dtl",
+"homework_late": "res://Assets/Dialogue/homework_late.dtl",
 "interview_cheated": "res://Assets/Dialogue/interview_cheated.dtl",
 "interview_legit": "res://Assets/Dialogue/interview_legit.dtl",
 "job_interview": "res://Assets/Dialogue/job_interview.dtl",
@@ -56,13 +58,13 @@ directories/dtl_directory={
 "worst_ending": "res://Assets/Dialogue/worst_ending.dtl"
 }
 layout/style_directory={
-"": "res://Assets/Dialogue/test_style.tres",
+"": "res://Assets/Box Styles/vn_style.tres",
 "test_style": "res://Assets/Dialogue/test_style.tres",
 "vn_style": "res://Assets/Box Styles/vn_style.tres"
 }
 glossary/default_case_sensitive=true
 extensions_folder="res://addons/dialogic_additions"
-text/letter_speed=0.0
+text/letter_speed=0.1
 text/initial_text_reveal_skippable=false
 text/text_reveal_skip_delay=0.1
 text/advance_delay=0.1
@@ -98,11 +100,12 @@ variables={
 "gibberish": "",
 "no_count": 0
 }
-text/autoadvance_fixed_delay=0.3
+text/autoadvance_fixed_delay=0.5
 text/autoadvance_enabled=true
 layout/style_list=["res://Assets/Dialogue/test_style.tres", "res://Assets/Box Styles/vn_style.tres"]
-layout/default_style="res://Assets/Dialogue/test_style.tres"
+layout/default_style="res://Assets/Box Styles/vn_style.tres"
 text/autocolor_names=false
+layout/end_behaviour=2
 
 [display]
 

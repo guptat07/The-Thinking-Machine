@@ -1,4 +1,3 @@
-[background arg="res://Assets/Images/job_interview.png" fade="0.0"]
 You're about to graduate.
 You have a job interview; it's all on the line right here.
 [signal arg="i_can_help"]

@@ -16,7 +16,9 @@
 script = ExtResource("2_1sg3r")
 scene = ExtResource("1_e7tb5")
 overrides = {
-"global_font": "\"res://Assets/Fonts/Teko-Regular.ttf\""
+"global_bg_color": "Color(0, 0, 0, 0)",
+"global_font": "\"res://Assets/Fonts/Teko-Regular.ttf\"",
+"global_font_size": "72.0"
 }
 
 [sub_resource type="Resource" id="Resource_wosjx"]
@@ -37,7 +39,11 @@ overrides = {}
 [sub_resource type="Resource" id="Resource_4pir1"]
 script = ExtResource("2_1sg3r")
 scene = ExtResource("6_64dc1")
-overrides = {}
+overrides = {
+"box_margin_bottom": "30.0",
+"box_size": "Vector2(1400, 300)",
+"text_alignment": "1"
+}
 
 [sub_resource type="Resource" id="Resource_d0ed5"]
 script = ExtResource("2_1sg3r")
@@ -76,4 +82,4 @@ layer_info = {
 }
 base_overrides = {}
 layers = Array[ExtResource("2_1sg3r")]([])
-metadata/_latest_layer = ""
+metadata/_latest_layer = "13"

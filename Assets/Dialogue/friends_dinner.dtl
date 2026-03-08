@@ -4,3 +4,4 @@ Your job is now to manage a group of Junior Developers.
 They all have questions for you about their tasks throughout the day, so you need to have an understanding of what each of them is doing.
 Do you use the Thinking Machine?
 [signal arg="i_remember"]
+[wait time="60.0"]

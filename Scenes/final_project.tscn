@@ -7,3 +7,4 @@
 script = ExtResource("1_qurvn")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_q7fdh")]
+TextureName = "final_project.png"
