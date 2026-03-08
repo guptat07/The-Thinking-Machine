@@ -1,3 +1,4 @@
+[background arg="res://Assets/Images/homework.PNG" fade="0.0"]
 You have an assignment due tonight.
 It's a little harder than you thought, and you're not sure you can complete it by 11\:59.
 [signal arg="i_can_help"]

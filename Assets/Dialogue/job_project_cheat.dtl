@@ -1,4 +1,5 @@
 The Thinking Machine completes the project for you on time and under budget.
 Impressed with your ability, the company promotes you to the Senior level.
+[background arg="res://Assets/Images/promotion.PNG" fade="0.0"]
 You now make double your previous salary.
 [signal arg="friends_dinner"]

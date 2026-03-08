@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Thinking Machine"
-run/main_scene="uid://d3ddlg77j5183"
+run/main_scene="uid://dtl5pa7s86fea"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 ArduinoUDP="*res://Scripts/ArduinoUDP.cs"
+AudioSingelton="*res://Scenes/AudioSingelton.tscn"
 
 [dialogic]
 
@@ -102,6 +103,14 @@ text/autoadvance_enabled=true
 layout/style_list=["res://Assets/Dialogue/test_style.tres", "res://Assets/Box Styles/vn_style.tres"]
 layout/default_style="res://Assets/Dialogue/test_style.tres"
 text/autocolor_names=false
+
+[display]
+
+window/size/viewport_width=1440
+window/size/viewport_height=1080
+window/size/mode=3
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
