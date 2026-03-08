@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Thinking Machine"
-run/main_scene="uid://dtl5pa7s86fea"
+run/main_scene="uid://dg5vu8hmurtie"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
@@ -66,10 +66,10 @@ layout/style_directory={
 }
 glossary/default_case_sensitive=true
 extensions_folder="res://addons/dialogic_additions"
-text/letter_speed=0.1
-text/initial_text_reveal_skippable=false
-text/text_reveal_skip_delay=0.1
-text/advance_delay=0.1
+text/letter_speed=0.05
+text/initial_text_reveal_skippable=true
+text/text_reveal_skip_delay=0.0
+text/advance_delay=0.0
 text/autoadvance_per_character_delay=0.01
 text/autoadvance_ignored_characters_enabled=true
 animations/join_default_length=0.5

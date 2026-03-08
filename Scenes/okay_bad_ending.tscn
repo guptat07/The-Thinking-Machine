@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://camuci0by4knx"]
+[gd_scene load_steps=2 format=3 uid="uid://camuci0by4knx"]
 
 [ext_resource type="Script" uid="uid://c1itgg88xw3j4" path="res://Scripts/OkayBadEnding.cs" id="1_4pess"]
-[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_dd2k0"]
 
 [node name="OkayBadEnding" type="Node2D"]
 script = ExtResource("1_4pess")
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_dd2k0")]

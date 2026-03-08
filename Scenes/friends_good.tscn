@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://vt1842vo5uqj"]
+[gd_scene load_steps=2 format=3 uid="uid://vt1842vo5uqj"]
 
 [ext_resource type="Script" uid="uid://c4jpg8wcpudkh" path="res://Scripts/FriendsGood.cs" id="1_finsg"]
-[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_s2lgo"]
 
 [node name="FriendsGood" type="Node2D"]
 script = ExtResource("1_finsg")
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_s2lgo")]
