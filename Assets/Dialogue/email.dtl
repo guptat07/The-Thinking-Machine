@@ -1,0 +1,8 @@
+You have to write an email to a person who doesn't really like you.
+You do not want to do this.
+[signal arg="ich"]
+join thinking_machine rightmost
+thinking_machine: I can help!
+Do you use the Thinking Machine?
+- Yes
+- No

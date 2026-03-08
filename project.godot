@@ -21,15 +21,32 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"thinking_machine": "res://Assets/Dialogue/thinking_machine.dch"
+}
 directories/dtl_directory={
+"assignment": "res://Assets/Dialogue/assignment.dtl",
+"email": "res://Assets/Dialogue/email.dtl",
+"final_project_cheat": "res://Assets/Dialogue/final_project_cheat.dtl",
+"final_project_legit": "res://Assets/Dialogue/final_project_legit.dtl",
+"fired": "res://Assets/Dialogue/fired.dtl",
+"friend_helps": "res://Assets/Dialogue/friend_helps.dtl",
+"friends_dinner": "res://Assets/Dialogue/friends_dinner.dtl",
+"interview_cheated": "res://Assets/Dialogue/interview_cheated.dtl",
+"interview_legit": "res://Assets/Dialogue/interview_legit.dtl",
+"job_interview": "res://Assets/Dialogue/job_interview.dtl",
+"job_project": "res://Assets/Dialogue/job_project.dtl",
+"job_project_cheat": "res://Assets/Dialogue/job_project_cheat.dtl",
+"job_project_legit": "res://Assets/Dialogue/job_project_legit.dtl",
+"peer_work_legit": "res://Assets/Dialogue/peer_work_legit.dtl",
+"start": "res://Assets/Dialogue/start.dtl",
 "test_timeline": "res://Assets/Dialogue/test_timeline.dtl"
 }
 layout/style_directory={}
 glossary/default_case_sensitive=true
 extensions_folder="res://addons/dialogic_additions"
-text/letter_speed=0.01
-text/initial_text_reveal_skippable=true
+text/letter_speed=0.007
+text/initial_text_reveal_skippable=false
 text/text_reveal_skip_delay=0.1
 text/advance_delay=0.1
 text/autoadvance_per_character_delay=0.1
@@ -39,9 +56,9 @@ animations/join_default_wait=true
 animations/leave_default_length=0.5
 animations/leave_default_wait=true
 animations/cross_fade_default_length=0.5
-choices/autofocus_first=true
-choices/delay=0.2
-choices/reveal_delay=0
+choices/autofocus_first=false
+choices/delay=0.3
+choices/reveal_delay=0.1
 choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
@@ -60,6 +77,11 @@ audio/channel_defaults={
 "volume": 0.0
 }
 }
+variables={
+"tm_uses": 0
+}
+text/autoadvance_fixed_delay=3.0
+text/autoadvance_enabled=true
 
 [dotnet]
 
