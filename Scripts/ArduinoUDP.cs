@@ -18,6 +18,7 @@ public partial class ArduinoUDP : Node
     private const string OSC_ADDRESS  = "/text";        // OSC address pattern
     // ─────────────────────────────────────────────────────────
     public int tm_uses = 0;
+    public int nos = 0;
     public bool justUsed = false;
     public static ArduinoUDP Instance { get; private set; }
 

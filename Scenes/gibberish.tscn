@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyyo11m1up748"]
-
-[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_5s6js"]
-[ext_resource type="Script" uid="uid://dtg8nffcf6xf6" path="res://Scripts/Gibberish.cs" id="1_u1ntm"]
-
-[node name="Gibberish" type="Node2D"]
-script = ExtResource("1_u1ntm")
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_5s6js")]
