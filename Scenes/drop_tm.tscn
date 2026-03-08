@@ -1,7 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://em80pjodt845"]
-
-[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_5vn2w"]
+[gd_scene format=3 uid="uid://em80pjodt845"]
 
 [node name="DropTM" type="Node2D"]
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_5vn2w")]

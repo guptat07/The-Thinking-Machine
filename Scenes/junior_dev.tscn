@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://5jcms5db6gvx"]
+[gd_scene load_steps=2 format=3 uid="uid://5jcms5db6gvx"]
 
-[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_48smg"]
 [ext_resource type="Script" uid="uid://l5k4g7w2rl24" path="res://Scripts/JuniorDev.cs" id="1_a3m12"]
 
 [node name="JuniorDev" type="Node2D"]
 script = ExtResource("1_a3m12")
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_48smg")]
-TextureName = "junior_dev.png"

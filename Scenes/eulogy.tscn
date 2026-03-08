@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3ddlg77j5183"]
+[gd_scene load_steps=2 format=3 uid="uid://d3ddlg77j5183"]
 
 [ext_resource type="Script" uid="uid://g8h3m4qu42qe" path="res://Scripts/Eulogy.cs" id="1_d6hiw"]
-[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_dmwp4"]
 
 [node name="Eulogy" type="Node2D"]
 script = ExtResource("1_d6hiw")
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_dmwp4")]

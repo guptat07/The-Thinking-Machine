@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://h0nwi5niyslm"]
+[gd_scene load_steps=2 format=3 uid="uid://h0nwi5niyslm"]
 
 [ext_resource type="Script" uid="uid://bn7wlil3o84r5" path="res://Scripts/EmailScene.cs" id="1_gdjyu"]
-[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_v7v4h"]
 
 [node name="EmailScene" type="Node2D"]
 script = ExtResource("1_gdjyu")
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_v7v4h")]
-TextureName = "email.png"

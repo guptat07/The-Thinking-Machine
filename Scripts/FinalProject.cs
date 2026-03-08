@@ -15,7 +15,7 @@ public partial class FinalProject : Node2D
         }
 
         dlg.Connect("timeline_ended", new Callable(this, nameof(OnDialogicTimelineEnded)));
-        dlg.Connect("signal_event", new Callable(this, nameof(OnDialogicSignal)));
+        // dlg.Connect("signal_event", new Callable(this, nameof(OnDialogicSignal)));
 
         GD.Print("TM USES: "+ArduinoUDP.Instance.tm_uses);
         if(ArduinoUDP.Instance.justUsed){
@@ -30,12 +30,5 @@ public partial class FinalProject : Node2D
     {
         GetTree().ChangeSceneToFile("res://Scenes/job_interview.tscn");
     }
-    private async void  OnDialogicSignal(Variant argument){
-        if (argument.AsString() == "flashes"){
-            bool raised = false;
-            while(!raised) {
-                raised = await ArduinoUDP.Instance.SendAndReceiveAsync("I can help!");
-            }
-        }
-    }
+    
 }

@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgxjxi2tr07bb"]
+[gd_scene load_steps=2 format=3 uid="uid://dgxjxi2tr07bb"]
 
 [ext_resource type="Script" uid="uid://cwff286e3e3pd" path="res://Scripts/AssignmentScene.cs" id="1_74x6s"]
-[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_rlt5n"]
 
 [node name="AssignmentScene" type="Node2D"]
 script = ExtResource("1_74x6s")
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_rlt5n")]
-TextureName = "homework.png"
