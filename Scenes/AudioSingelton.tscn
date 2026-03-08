@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dbajm0xcj517a"]
 
-[ext_resource type="AudioStream" uid="uid://b3v177g57j5qg" path="res://Assets/Sound/106.wav" id="1_vdg7x"]
+[ext_resource type="AudioStream" uid="uid://buxw8uu5es0gb" path="res://Assets/Sound/106.ogg" id="1_vdg7x"]
 
 [node name="AudioSingelton" type="Node2D"]
 
