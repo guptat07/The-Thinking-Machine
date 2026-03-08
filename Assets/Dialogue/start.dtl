@@ -1,5 +1,5 @@
 One day, you find a magic machine.
 join thinking_machine rightmost
-thinking_machine: Hello!
+[signal arg="hello"]
 leave thinking_machine
 This is the Thinking Machine. You decide to keep it.

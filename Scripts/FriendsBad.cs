@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Threading.Tasks;
-public partial class EmailScene : Node
+public partial class FriendsBad : Node2D
 {
     [Export] public NodePath DialogicSingletonPath = "/root/Dialogic";
 	[Export] public string DialoguePath = "res://Assets/Dialogue/email.dtl";
@@ -29,8 +29,7 @@ public partial class EmailScene : Node
             } else {
                 GD.Print("FALSEEEEEEEeeEE");
             }
-            GetTree().ChangeSceneToFile("res://Scenes/assignment_scene.tscn");
+            GetTree().ChangeSceneToFile("res://Scenes/.tscn");
         }
     }
-
 }
