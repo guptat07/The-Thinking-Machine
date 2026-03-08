@@ -22,7 +22,13 @@ public partial class EmailScene : Node
     {
         GD.Print($"Dialogic Signal Event reached! Argument: {argument.ToString()}");
         if(argument.AsString() == "i_can_help"){
-            // send text to arduino
+            // Send 32-char padded string to Arduino, receive boolean response
+            _ = ArduinoUDP.SendAndReceiveAsync("i_can_help").ContinueWith(task => {
+                if (task.IsFaulted)
+                    GD.PrintErr($"[EmailScene] Arduino error: {task.Exception?.Message}");
+                else
+                    GD.Print($"[EmailScene] Arduino responded: {task.Result}");
+            });
         }
     }
     private void OnDialogicTimelineEnded()
