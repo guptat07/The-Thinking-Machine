@@ -1,3 +1,4 @@
+[background arg="res://Assets/Images/email.png" fade="0.0"]
 You have to write an email to a person who doesn't really like you.
 You do not want to do this.
 [signal arg="i_can_help"]

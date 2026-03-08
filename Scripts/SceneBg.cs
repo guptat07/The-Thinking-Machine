@@ -6,7 +6,7 @@ public partial class SceneBg : CanvasLayer
 {
     
     public TextureRect textureRect;
-    public const string TexturePathBase = "res://Assets/";
+    public const string TexturePathBase = "res://Assets/Images/";
     
     private string _textureName = "";
     [Export] 

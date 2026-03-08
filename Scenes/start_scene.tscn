@@ -7,4 +7,3 @@
 script = ExtResource("1_82sop")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_aeweq")]
-TextureName = "temp_bg.jpg"
