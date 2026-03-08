@@ -5,3 +5,4 @@ What were their names again?
 [text_input text="" var="gibberish" placeholder="enter friends name"]
 thinking_machine: TM\: I have news for you.
 Pick up the Thinking Machine.
+[signal arg="pick_up"]

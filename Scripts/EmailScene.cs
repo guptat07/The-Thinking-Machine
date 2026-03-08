@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+using System.Threading.Tasks;
 public partial class EmailScene : Node
 {
     [Export] public NodePath DialogicSingletonPath = "/root/Dialogic";
@@ -14,26 +14,23 @@ public partial class EmailScene : Node
         }
 
         dlg.Connect("signal_event", new Callable(this, nameof(OnDialogicSignal)));
-        dlg.Connect("timeline_ended", new Callable(this, nameof(OnDialogicTimelineEnded)));
         dlg.Call("start", DialoguePath);
     }
     
-    private void OnDialogicSignal(Variant argument)
+    private async void OnDialogicSignal(Variant argument)
     {
         GD.Print($"Dialogic Signal Event reached! Argument: {argument.ToString()}");
         if(argument.AsString() == "i_can_help"){
             // Send 32-char padded string to Arduino, receive boolean response
-            _ = ArduinoUDP.SendAndReceiveAsync("i_can_help").ContinueWith(task => {
-                if (task.IsFaulted)
-                    GD.PrintErr($"[EmailScene] Arduino error: {task.Exception?.Message}");
-                else
-                    GD.Print($"[EmailScene] Arduino responded: {task.Result}");
-            });
+            bool raised = await ArduinoUDP.Instance.SendAndReceiveAsync("I can help!");
+            if(raised) {
+                GD.Print("TRUEEEEEEEEEEE");
+                ArduinoUDP.Instance.tm_uses += 1;
+            } else {
+                GD.Print("FALSEEEEEEEeeEE");
+            }
+            GetTree().ChangeSceneToFile("res://Scenes/assignment_scene.tscn");
         }
     }
-    private void OnDialogicTimelineEnded()
-    {
-        GD.Print("End of dialogue");
-        GetTree().ChangeSceneToFile("res://Scenes/assignment_scene.tscn");
-    }
+
 }

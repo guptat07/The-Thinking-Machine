@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="The Thinking Machine"
-run/main_scene="uid://dtl5pa7s86fea"
+run/main_scene="uid://d3ddlg77j5183"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+ArduinoUDP="*res://Scripts/ArduinoUDP.cs"
 
 [dialogic]
 
@@ -26,6 +27,8 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "assignment": "res://Assets/Dialogue/assignment.dtl",
+"bad_ending": "res://Assets/Dialogue/bad_ending.dtl",
+"bad_endingtimeline": "res://Assets/Dialogue/bad_endingtimeline.dtl",
 "dad": "res://Assets/Dialogue/dad.dtl",
 "drop_tm": "res://Assets/Dialogue/drop_tm.dtl",
 "email": "res://Assets/Dialogue/email.dtl",
@@ -43,6 +46,8 @@ directories/dtl_directory={
 "job_project_legit": "res://Assets/Dialogue/job_project_legit.dtl",
 "need_tm": "res://Assets/Dialogue/need_tm.dtl",
 "no_5": "res://Assets/Dialogue/no_5.dtl",
+"okay_ending": "res://Assets/Dialogue/okay_ending.dtl",
+"passed_over": "res://Assets/Dialogue/passed_over.dtl",
 "peer_work_legit": "res://Assets/Dialogue/peer_work_legit.dtl",
 "senior_dev_cheat": "res://Assets/Dialogue/senior_dev_cheat.dtl",
 "start": "res://Assets/Dialogue/start.dtl",
@@ -56,7 +61,7 @@ layout/style_directory={
 }
 glossary/default_case_sensitive=true
 extensions_folder="res://addons/dialogic_additions"
-text/letter_speed=0.035
+text/letter_speed=0.0
 text/initial_text_reveal_skippable=false
 text/text_reveal_skip_delay=0.1
 text/advance_delay=0.1
@@ -90,8 +95,7 @@ audio/channel_defaults={
 }
 variables={
 "gibberish": "",
-"no_count": 0,
-"tm_uses": 0
+"no_count": 0
 }
 text/autoadvance_fixed_delay=0.3
 text/autoadvance_enabled=true

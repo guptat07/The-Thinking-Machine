@@ -1,14 +1,4 @@
 Your boss's Thinking Machine realizes that it can do the job you were told to do because your Thinking Machine could do it.
 The company downsizes massively and your role is deemed redundant.
 Eventually, this line of thinking drives the company to downsize all of its employees—and the Thinking Machines that are dependent on their owners to physically enact their thoughts.
-if {tm_uses} > 3.0:
-	You have money saved up, but you don't know what to do with it.
-	The Thinking Machine tells you how to spend it.
-	You live out the rest of your days believing the Thinking Machine when it tells you that you're enjoying your life.
-	[signal arg="game_end"]
-else:
-	Even though you don't have a job anymore, you realize there is more to life than maximizing shareholder value.
-	You have money saved up.
-	You go home to your family. You destroy the Thinking Machine.
-	You'll figure something out yourself.
-	[signal arg="game_end"]
+[signal arg="choose_ending"]

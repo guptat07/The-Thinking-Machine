@@ -1,103 +1,192 @@
 using Godot;
 using System;
-using System.Net;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
 /// <summary>
-/// Static helper for UDP communication with the Arduino Uno R4 WiFi.
-///
-/// Protocol:
-///   SEND    → Arduino port 8888: exactly 32 bytes (null-padded UTF-8 string)
-///   RECEIVE ← Arduino port 8889: exactly 1 byte  (0x01 = true, 0x00 = false)
+/// AutoLoad Singleton for sending/receiving OSC messages to/from an Arduino over UDP.
+/// Keeps ports open continuously to avoid port conflicts and dropped messages.
 /// </summary>
-public static class ArduinoUDP
+public partial class ArduinoUDP : Node
 {
     // ── Configure these ──────────────────────────────────────
-    private const string ARDUINO_IP   = "192.168.X.X"; // ← Replace with Arduino's IP from Serial Monitor
-    private const int    ARDUINO_PORT = 8888;           // Port Arduino listens on
-    private const int    LISTEN_PORT  = 8889;           // Port we listen on for responses
-    private const int    STRING_LENGTH = 32;            // Exact byte length enforced by protocol
-    private const int    TIMEOUT_MS   = 3000;           // How long to wait for a response
+    private const string ARDUINO_IP   = "172.20.10.3";
+    private const int    ARDUINO_PORT = 7001;
+    private const int    LISTEN_PORT  = 7002;
+    private const string OSC_ADDRESS  = "/text";        // OSC address pattern
     // ─────────────────────────────────────────────────────────
+    public int tm_uses = 0;
+    public int nos = 0;
+    public bool justUsed = false;
+    public static ArduinoUDP Instance { get; private set; }
+
+    // Event fired whenever the Arduino sends a boolean via UDP
+    public event Action<bool> OnBooleanReceived;
+
+    private UdpClient _receiveClient;
+    private UdpClient _sendClient;
+    private TaskCompletionSource<bool> _pendingReceive;
+
+    public override void _Ready()
+    {
+        if (Instance != null)
+        {
+            QueueFree();
+            return;
+        }
+        Instance = this;
+
+        // Initialize persistent sender
+        _sendClient = new UdpClient();
+
+        // Initialize persistent listener
+        try
+        {
+            _receiveClient = new UdpClient(LISTEN_PORT);
+            GD.Print($"[ArduinoUDP] Listening for Arduino messages on port {LISTEN_PORT}...");
+            
+            // Start the background listener loop
+            _ = ListenForArduinoLoop();
+        }
+        catch (Exception ex)
+        {
+            GD.PrintErr($"[ArduinoUDP] Failed to open listen port {LISTEN_PORT}: {ex.Message}");
+        }
+    }
+
+    public override void _ExitTree()
+    {
+        _receiveClient?.Close();
+        _sendClient?.Close();
+    }
+
+    // ── Public API ───────────────────────────────────────────
 
     /// <summary>
-    /// Sends a 32-byte null-padded string to the Arduino via UDP.
+    /// Sends an OSC string and blocks until the Arduino responds with a boolean.
+    /// Uses the persistent background listener to handle the response.
+    /// Waits indefinitely until a response is received.
     /// </summary>
-    public static async Task SendStringAsync(string text)
+    public async Task<bool> SendAndReceiveAsync(string text)
     {
-        byte[] packet = BuildPacket(text);
+        // Cancel any old pending receive
+        _pendingReceive?.TrySetCanceled();
+        _pendingReceive = new TaskCompletionSource<bool>();
 
-        using var client = new UdpClient();
-        await client.SendAsync(packet, packet.Length, ARDUINO_IP, ARDUINO_PORT);
-        GD.Print($"[ArduinoUDP] Sent: \"{text}\" ({text.Length} chars, padded to {STRING_LENGTH} bytes)");
+        // Send the string
+        SendStringAsync(text);
+
+        // Wait indefinitely for the background listener to resolve _pendingReceive
+        return await _pendingReceive.Task;
     }
 
     /// <summary>
-    /// Listens on LISTEN_PORT for a 1-byte boolean response from the Arduino.
-    /// Returns true (0x01) or false (0x00). Times out after TIMEOUT_MS.
+    /// Sends a valid OSC message containing a single string argument.
+    /// Fire and forget.
     /// </summary>
-    public static async Task<bool> ReceiveBooleanAsync()
+    public void SendStringAsync(string text)
     {
-        using var listener = new UdpClient(LISTEN_PORT);
-
-        var receiveTask = listener.ReceiveAsync();
-        var completed = await Task.WhenAny(receiveTask, Task.Delay(TIMEOUT_MS));
-
-        if (completed == receiveTask)
+        byte[] packet = BuildOscMessage(OSC_ADDRESS, text);
+        try
         {
-            var result = receiveTask.Result;
-            bool value = result.Buffer.Length > 0 && result.Buffer[0] == 0x01;
-            GD.Print($"[ArduinoUDP] Received response: {value}");
-            return value;
+            _sendClient.SendAsync(packet, packet.Length, ARDUINO_IP, ARDUINO_PORT);
+            GD.Print($"[ArduinoUDP] Sent OSC {OSC_ADDRESS} \"{text}\" ({packet.Length} bytes)");
+        }
+        catch (Exception ex)
+        {
+             GD.PrintErr($"[ArduinoUDP] Send error: {ex.Message}");
+        }
+    }
+
+    // ── Background Listener Loop ─────────────────────────────
+
+    private async Task ListenForArduinoLoop()
+    {
+        while (IsInsideTree()) // Loop while the game is running
+        {
+            try
+            {
+                var result = await _receiveClient.ReceiveAsync();
+                byte[] data = result.Buffer;
+
+                if (data.Length > 0)
+                {
+                    bool value = ParseOscBoolean(data);
+                    GD.Print($"[ArduinoUDP] Received from Arduino: {value}");
+                    
+                    // Fire the event for anyone listening generally
+                    OnBooleanReceived?.Invoke(value);
+
+                    // If a specific SendAndReceiveAsync call is waiting, hand it the value
+                    _pendingReceive?.TrySetResult(value);
+                }
+            }
+            catch (ObjectDisposedException) { /* Ignored, happens on exit */ }
+            catch (Exception ex)
+            {
+                GD.PrintErr($"[ArduinoUDP] Receive error: {ex.Message}");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Basic OSC parser that looks for a boolean or integer argument.
+    /// Example packet: "/booleans\0\0\0,i\0\0\0\0\0\1"
+    /// </summary>
+    private bool ParseOscBoolean(byte[] data)
+    {
+        // 1. Find the type tag string separator ','
+        int commaIndex = -1;
+        for (int i = 0; i < data.Length; i++)
+        {
+            if (data[i] == (byte)',')
+            {
+                commaIndex = i;
+                break;
+            }
         }
 
-        GD.PrintErr("[ArduinoUDP] Timed out waiting for Arduino response.");
+        if (commaIndex == -1 || commaIndex + 1 >= data.Length)
+            return false; // No type tags found
+
+        char typeTag = (char)data[commaIndex + 1];
+
+        // OSC True / False types (no argument bytes following)
+        if (typeTag == 'T') return true;
+        if (typeTag == 'F') return false;
+
+        GD.Print("PAPPLE");
         return false;
     }
 
-    /// <summary>
-    /// Convenience: sends the string and waits for the boolean response.
-    /// </summary>
-    public static async Task<bool> SendAndReceiveAsync(string text)
+    // ── OSC message builder ──────────────────────────────────
+
+    public static byte[] BuildOscMessage(string address, string argument)
     {
-        // Open listener BEFORE sending so we don't miss the reply
-        using var listener = new UdpClient(LISTEN_PORT);
+        var buf = new List<byte>();
+    
+        // 1. Address pattern – must start with '/'
+        WriteOscString(buf, address);
 
-        // Send the padded string
-        byte[] packet = BuildPacket(text);
-        using (var sender = new UdpClient())
-        {
-            await sender.SendAsync(packet, packet.Length, ARDUINO_IP, ARDUINO_PORT);
-            GD.Print($"[ArduinoUDP] Sent: \"{text}\" ({text.Length} chars, padded to {STRING_LENGTH} bytes)");
-        }
+        // 2. Type tag string – ",s" means one string argument
+        WriteOscString(buf, ",s");
 
-        // Wait for response with timeout
-        var receiveTask = listener.ReceiveAsync();
-        var completed = await Task.WhenAny(receiveTask, Task.Delay(TIMEOUT_MS));
+        // 3. The string argument itself
+        WriteOscString(buf, argument);
 
-        if (completed == receiveTask)
-        {
-            var result = receiveTask.Result;
-            bool value = result.Buffer.Length > 0 && result.Buffer[0] == 0x01;
-            GD.Print($"[ArduinoUDP] Received response: {value}");
-            return value;
-        }
-
-        GD.PrintErr("[ArduinoUDP] Timed out waiting for Arduino response.");
-        return false;
+        return buf.ToArray();
     }
 
-    /// <summary>
-    /// Builds a 32-byte null-padded packet from the input string.
-    /// </summary>
-    private static byte[] BuildPacket(string text)
+    private static void WriteOscString(List<byte> buf, string s)
     {
-        byte[] packet = new byte[STRING_LENGTH];
-        byte[] textBytes = Encoding.UTF8.GetBytes(text);
-        int copyLen = Math.Min(textBytes.Length, STRING_LENGTH);
-        Array.Copy(textBytes, packet, copyLen);
-        return packet;
+        byte[] bytes = Encoding.ASCII.GetBytes(s);
+        buf.AddRange(bytes);
+
+        // Add 1–4 null bytes to reach the next 4-byte boundary
+        int nullCount = 4 - (bytes.Length % 4);
+        for (int i = 0; i < nullCount; i++)
+            buf.Add(0x00);
     }
 }
