@@ -3,4 +3,3 @@ join thinking_machine rightmost
 thinking_machine: Hello!
 leave thinking_machine
 This is the Thinking Machine. You decide to keep it.
-[signal arg="alksd"]

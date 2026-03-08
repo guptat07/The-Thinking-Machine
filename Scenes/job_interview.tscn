@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://co0no5sry11ag"]
+[gd_scene load_steps=2 format=3 uid="uid://co0no5sry11ag"]
+
+[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_ahvj2"]
 
 [node name="JobInterview" type="Node2D"]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_ahvj2")]

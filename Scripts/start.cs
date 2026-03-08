@@ -4,10 +4,7 @@ using System;
 public partial class start : Node
 {
     [Export] public NodePath DialogicSingletonPath = "/root/Dialogic";
-	[Export] public string DialoguePath = "res://Assets/Dialogue/";
-    public string[] dialogueStems = {"start", "email", "assignment"};
-    public string currentDialogue = "";
-    int count = 0;
+	[Export] public string DialoguePath = "res://Assets/Dialogue/start.dtl";
     public override void _Ready()
     {
         var dlg = GetNodeOrNull<Node>(DialogicSingletonPath);
@@ -16,28 +13,23 @@ public partial class start : Node
             return;
         }
 
-        // connects the emit signal in dialogic
-        dlg.Connect("signal_event", new Callable(this, nameof(OnDialogicSignal)));
-        // dlg.Connect("timeline_ended", new Callable(this, nameof(OnDialogicTimelineEnded)));
-        dlg.Call("start", DialoguePath + "need_tm.dtl");
-        count++;
+        // dlg.Connect("signal_event", new Callable(this, nameof(OnDialogicSignal)));
+        dlg.Connect("timeline_ended", new Callable(this, nameof(OnDialogicTimelineEnded)));
+        dlg.Call("start", DialoguePath);
     }
     
-    private void OnDialogicSignal(Variant argument)
-    {
-        GD.Print($"Dialogic Signal Event reached! Argument: {argument.ToString()}");
-        if(argument.AsString() == "ich"){
-            GD.Print("I can help!");
-        }
-    }
-    // private void OnDialogicTimelineEnded()
+    // private void OnDialogicSignal(Variant argument)
     // {
-    //     if(count == dialogueStems.Length){
-    //         GD.Print("End of dialogue");
-    //     } else {
-    //         currentDialogue = DialoguePath + dialogueStems[count]+".dtl";
-    //         count++;
-    //         GetNodeOrNull<Node>(DialogicSingletonPath).Call("start", currentDialogue);
+    //     GD.Print($"Dialogic Signal Event reached! Argument: {argument.ToString()}");
+    //     if(argument.AsString() == "ich"){
+    //         // send signal to arduino to send text "I can help!"
+    //     } else if (argument.AsString() == "let_me") {
+    //         // send signal to arduino to send text ...
     //     }
     // }
+    private void OnDialogicTimelineEnded()
+    {
+        GD.Print("End of dialogue");
+        GetTree().ChangeSceneToFile("res://Scenes/email_scene.tscn");
+    }
 }

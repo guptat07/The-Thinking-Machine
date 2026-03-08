@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://5jcms5db6gvx"]
+[gd_scene load_steps=2 format=3 uid="uid://5jcms5db6gvx"]
+
+[ext_resource type="PackedScene" uid="uid://do88wl6elx8d5" path="res://Scenes/scene_bg.tscn" id="1_48smg"]
 
 [node name="JuniorDev" type="Node2D"]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_48smg")]
