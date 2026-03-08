@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://r3ya3ahg567r"]
+
+[ext_resource type="Script" uid="uid://cq0d5rwhl5uix" path="res://Scenes/TitleScreen.cs" id="1_ryprb"]
+[ext_resource type="Texture2D" uid="uid://dwtgqcto1io6u" path="res://Assets/Images/title_screen.PNG" id="2_8op2v"]
+
+[node name="TitleScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ryprb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_8op2v")

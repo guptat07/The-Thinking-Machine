@@ -1,3 +1,4 @@
-<Empty Text Event>
+[background arg="res://Assets/Images/junior_dev.PNG" fade="0.0"]
 You've been working here for a few years now, and your boss gives you a big project that you'll take the credit—or the blame—for. Do you use the Thinking Machine?
 [signal arg="can_you_do"]
+[wait time="60.0"]
